@@ -1,6 +1,6 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5GA9_VByGjAzkI7yvxuMh7MsZPlSVr90",
@@ -9,7 +9,7 @@ const firebaseConfig = {
   storageBucket: "stock-tracker-c386c.appspot.com",
   messagingSenderId: "484019630242",
   appId: "1:484019630242:web:150d8adb01bbe2a5ebe7fb",
-  measurementId: "G-DYYDVHQLR5"
+  measurementId: "G-DYYDVHQLR5",
 };
 
 if (!firebase.apps.length) {
@@ -19,5 +19,5 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-export { auth, db };
+export {auth, db};
 export default firebase;

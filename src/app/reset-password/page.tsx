@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from 'react';
-import { auth } from '../../../firebaseConfig';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, Suspense } from "react";
+import { auth } from "../../../firebaseConfig";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const ResetPassword = () => {
-  const [newPassword, setNewPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-  const [error, setError] = useState<string>('');
+const ResetPasswordComponent = () => {
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -18,24 +18,28 @@ const ResetPassword = () => {
   };
 
   const handleResetPassword = async () => {
-    setError('');
-    setMessage('');
+    setError("");
+    setMessage("");
     if (!validatePassword(newPassword)) {
-      setError('Password must be at least 8 characters long, contain one uppercase letter, one special character, and one number.');
+      setError(
+        "Password must be at least 8 characters long, contain one uppercase letter, one special character, and one number."
+      );
       return;
     }
     if (newPassword !== confirmPassword) {
-      setError('Passwords do not match.');
+      setError("Passwords do not match.");
       return;
     }
     try {
-      const oobCode = searchParams.get('oobCode');
+      const oobCode = searchParams.get("oobCode");
       if (oobCode) {
         await auth.confirmPasswordReset(oobCode, newPassword);
-        setMessage('Password reset successful. You can now log in with your new password.');
-        router.push('/login');
+        setMessage(
+          "Password reset successful. You can now log in with your new password."
+        );
+        router.push("/login");
       } else {
-        setError('Invalid or expired reset link.');
+        setError("Invalid or expired reset link.");
       }
     } catch (error: any) {
       setError(error.message);
@@ -73,4 +77,10 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+const ResetPasswordPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <ResetPasswordComponent />
+  </Suspense>
+);
+
+export default ResetPasswordPage;

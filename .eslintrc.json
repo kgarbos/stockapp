@@ -1,22 +1,19 @@
 {
-  "env": {
-    "es6": true,
-    "node": true
-  },
-  "extends": [
-    "eslint:recommended"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
-  },
+  "extends": "next",
   "rules": {
-    "quotes": ["error", "double"],
-    "linebreak-style": ["error", "unix"],
-    "max-len": ["error", { "code": 80 }],
-    "comma-dangle": ["error", "always-multiline"],
-    "object-curly-spacing": ["error", "never"],
-    "indent": ["error", 2],
-    "eol-last": ["error", "always"]
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "quotes": "off",
+    "linebreak-style": "off",
+    "max-len": "off",
+    "comma-dangle": "off",
+    "object-curly-spacing": "off",
+    "indent": "off",
+    "eol-last": "off",
+    "semi": "off",
+    "no-trailing-spaces": "off",
+    "arrow-parens": "off",
+    "no-multiple-empty-lines": "off",
+    "no-html-link-for-pages": "off"
   }
 }
